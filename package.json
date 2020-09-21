@@ -4,7 +4,8 @@
   "description": "Backend side for the ClutchTime Manager app",
   "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/BorjaG90/clutch-time-manager-server/issues"
   },
-  "homepage": "https://github.com/BorjaG90/clutch-time-manager-server#readme"
+  "homepage": "https://github.com/BorjaG90/clutch-time-manager-server#readme",
+  "dependencies": {
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4"
+  }
 }
