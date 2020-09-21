@@ -1,0 +1,19 @@
+{
+  "name": "clutch-time-manager-server",
+  "version": "0.0.0",
+  "description": "Backend side for the ClutchTime Manager app",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BorjaG90/clutch-time-manager-server.git"
+  },
+  "author": "BorjaG90",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/BorjaG90/clutch-time-manager-server/issues"
+  },
+  "homepage": "https://github.com/BorjaG90/clutch-time-manager-server#readme"
+}
