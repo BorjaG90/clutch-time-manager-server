@@ -14,8 +14,29 @@ const User = db.define('users', {
   password: {
     type: Sequelize.DataTypes.TEXT
   },
-  name: {
+  username: {
     type: Sequelize.DataTypes.TEXT
+  },
+  firstname: {
+    type: Sequelize.DataTypes.TEXT
+  },
+  lastname: {
+    type: Sequelize.DataTypes.TEXT
+  },
+  is_admin: {
+    type: Sequelize.DataTypes.BOOLEAN
+  },
+  active: {
+    type: Sequelize.DataTypes.BOOLEAN
+  },
+  created_at: {
+    type: Sequelize.DataTypes.TIME
+  },
+  modified_at: {
+    type: Sequelize.DataTypes.TIME
+  },
+  last_access: {
+    type: Sequelize.DataTypes.TIME
   }
 
 }, {
