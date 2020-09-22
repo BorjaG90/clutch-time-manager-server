@@ -1,5 +1,7 @@
 import Sequelize from 'sequelize';
+
 import { db } from '../config/database'
+import Team from './Team.model';
 
 const User = db.define('users', {
   id: {
@@ -23,4 +25,4 @@ const User = db.define('users', {
 User.hasMany(Team, { foreignKey: 'id_user', sourceKey: 'id'});
 Team.belongsTo(User, { foreignKey: 'id_user', sourceKey: 'id'});
 
-export default Player;
+export default User;

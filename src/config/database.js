@@ -3,7 +3,7 @@ import Sequelize from 'sequelize';
 import { database } from './keys';
 export const db =  new Sequelize(
   database.database,
-  database.user,
+  database.username,
   database.password,
   {
     host: database.host,

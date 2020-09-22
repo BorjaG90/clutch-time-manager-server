@@ -1,6 +1,5 @@
 import Sequelize from 'sequelize';
 import { db } from '../config/database'
-import User from './User.model';
 
 const Team = db.define('teams', {
   id: {
