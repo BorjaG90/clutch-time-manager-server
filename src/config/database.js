@@ -1,8 +1,7 @@
 import Sequelize from 'sequelize';
 
 import { database } from './keys';
-
-module.exports = new Sequelize(
+export const db =  new Sequelize(
   database.database,
   database.user,
   database.password,

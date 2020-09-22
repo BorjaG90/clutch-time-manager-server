@@ -1,8 +1,9 @@
 import express, {json} from 'express';
 import morgan from 'morgan';
 
-import teamRoutes from './routes/teams';
-import playerRoutes from './routes/players';
+import userRoutes from './routes/user.routes';
+import teamRoutes from './routes/team.routes';
+import playerRoutes from './routes/player.routes';
 
 let app = express();
 
@@ -11,6 +12,7 @@ app.use(morgan('dev'));
 app.use(json());
 
 // Routes
+app.use('/api/users', userRoutes);
 app.use('/api/teams', teamRoutes);
 app.use('/api/players', playerRoutes);
 
