@@ -1,4 +1,4 @@
-export const error_types = {
+export const errorTypes = {
     Error401: function(msg){ //no autorizado
         let err = Error.apply(this, [msg]);
         this.name = err.name = "Error401";
@@ -16,6 +16,14 @@ export const error_types = {
     Error404: function(msg){ //no encontrado
         let err = Error.apply(this, [msg]);
         this.name = err.name = "Error404";
+        this.message = err.message;
+        this.stack = err.stack;
+        return this;
+    },
+    Error500: function(msg){ //no encontrado
+        console.log('x');
+        let err = Error.apply(this, [msg]);
+        this.name = err.name = "Error500";
         this.message = err.message;
         this.stack = err.stack;
         return this;

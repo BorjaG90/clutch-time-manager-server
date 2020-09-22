@@ -14,7 +14,7 @@ async function main() {
   // Init server
   let port = process.env.PORT || 3500;
   await app.listen(port, function () {
-    console.log(`[[ClutchTime Manager server listening in port: ${port}]]`);
+    console.log(`-[ClutchTime Manager server listening in port: ${port}]-`);
   });
 }
 

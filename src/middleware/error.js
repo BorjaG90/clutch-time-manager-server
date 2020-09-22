@@ -1,5 +1,4 @@
-"use strict";
-const errorTypes = require("../controllers/errorTypes");
+import { errorTypes } from "../controllers/errorTypes";
 
 module.exports = {
   /*
@@ -8,10 +7,13 @@ module.exports = {
     */
   errorHandler: (error, req, res, next) => {
     console.log("ejecutando middleware de control de errores");
+    //console.log(`Error: ${error}`);
     if (error instanceof errorTypes.InfoError)
       res.status(200).json({ error: error.message });
     else if (error instanceof errorTypes.Error404)
       res.status(404).json({ error: error.message });
+    else if (error instanceof errorTypes.Error500)
+      res.status(500).json({ error: error.message });
     else if (error instanceof errorTypes.Error403)
       res.status(403).json({ error: error.message });
     else if (error instanceof errorTypes.Error401)

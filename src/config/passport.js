@@ -18,7 +18,7 @@ module.exports = (passport) => {
         User.findOne({
           where: {
             [Op.and]: [
-              { enabled: 1 },
+              { active: true },
               {
                 [Op.or]: [{ email: username }, { username: username }],
               },
@@ -46,10 +46,10 @@ module.exports = (passport) => {
 
   passport.use(
     new JwtStrategy(opts, (jwt_payload, done) => {
-      // console.log("ejecutando *callback verify* de estategia jwt");
+      console.log("ejecutando *callback verify* de estategia jwt");
       User.findOne({
         where: {
-          [Op.and]: [{ enabled: 1 }, { id: jwt_payload.sub }],
+          [Op.and]: [{ active: true }, { id: jwt_payload.sub }],
         }
       })
         .then((data) => {

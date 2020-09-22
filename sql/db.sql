@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS users(
   created_at TIMESTAMP NOT NULL,
   modified_at TIMESTAMP,
   active BOOLEAN NOT NULL,
+  is_admin BOOLEAN NOT NULL,
   last_access TIMESTAMP,
 
   CONSTRAINT pk_users PRIMARY KEY (id)
