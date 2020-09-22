@@ -1,0 +1,5 @@
+{
+  "prestes": [
+    "@babel/preset-env"
+  ]
+}
