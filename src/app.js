@@ -1,7 +1,8 @@
 import express, {json} from 'express';
 import morgan from 'morgan';
 
-require('dotenv').config();
+import teamRoutes from './routes/teams';
+import playerRoutes from './routes/players';
 
 let app = express();
 
@@ -9,10 +10,8 @@ let app = express();
 app.use(morgan('dev'));
 app.use(json());
 
-// Init server
-let port = process.env.PORT || 3000;
-app.listen(port, function () {
-  console.log(`ClutchTime Manager server listening in port: ${port}`);
-});
+// Routes
+app.use('/api/teams', teamRoutes);
+app.use('/api/players', playerRoutes);
 
 export default app;
