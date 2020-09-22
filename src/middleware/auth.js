@@ -1,4 +1,3 @@
-"use strict";
 const passport = require("passport");
 const error_types = require("../controllers/errorTypes");
 
