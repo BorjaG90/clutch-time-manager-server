@@ -1,0 +1,103 @@
+CREATE DATABASE db_clutch_time;
+
+USE db_clutch_time;
+
+DROP TABLE IF EXISTS contracts CASCADE;
+DROP TABLE IF EXISTS inscriptions CASCADE;
+DROP TABLE IF EXISTS players CASCADE;
+DROP TABLE IF EXISTS teams CASCADE;
+DROP TABLE IF EXISTS divisions CASCADE;
+DROP TABLE IF EXISTS competitions CASCADE;
+DROP TABLE IF EXISTS seasons CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+
+-- USERS TABLE
+CREATE TABLE IF NOT EXISTS users(
+  id BIGINT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1,
+  email VARCHAR(50) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  name VARCHAR(100) NOT NULL,
+
+  CONSTRAINT pk_users PRIMARY KEY (id)
+);
+
+-- SEASONS TABLE
+CREATE TABLE IF NOT EXISTS seasons(
+  id BIGINT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1,
+  init_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+
+  CONSTRAINT pk_seasons PRIMARY KEY (id)
+);
+
+-- COMPETITIONS TABLE
+CREATE TABLE IF NOT EXISTS competitions(
+  id BIGINT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1,
+  name VARCHAR(50) NOT NULL,
+  division INT(3) NOT NULL,
+  type INT(3) NOT NULL,
+  init_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  id_season BIGINT NOT NULL,
+  
+  CONSTRAINT pk_competitions PRIMARY KEY (id),
+  CONSTRAINT fk_competition_season FOREIGN KEY (id_season) REFERENCES seasons(id)
+);
+
+-- GROUPS TABLE
+CREATE TABLE IF NOT EXISTS divisions(
+  id BIGINT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1,
+  name VARCHAR(50) NOT NULL,
+  id_competition BIGINT NOT NULL,
+  
+  CONSTRAINT pk_groups PRIMARY KEY (id),
+  CONSTRAINT fk_division_competition FOREIGN KEY (id_competition) REFERENCES competitions(id)
+);
+
+-- TEAMS TABLE
+CREATE TABLE IF NOT EXISTS teams(
+  id BIGINT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1,
+  name VARCHAR(50) NOT NULL,
+  city VARCHAR(50),
+  id_user BIGINT NOT NULL,
+  
+  CONSTRAINT pk_teams PRIMARY KEY (id),
+  CONSTRAINT fk_team_user FOREIGN KEY (id_user) REFERENCES users(id)
+);
+
+-- PLAYERS TABLE
+CREATE TABLE IF NOT EXISTS players(
+  id BIGINT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1,
+  firstname VARCHAR(50) NOT NULL,
+  lastname VARCHAR(50) NOT NULL,
+  position INT(1) NOT NULL,
+  second_p INT(1) NOT NULL,
+
+  CONSTRAINT pk_players PRIMARY KEY (id)
+);
+
+-- INSCRIPTIONS TABLE
+CREATE TABLE IF NOT EXISTS inscriptions(
+  id BIGINT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1,
+  id_division BIGINT NOT NULL,
+  id_team BIGINT NOT NULL,
+  
+  CONSTRAINT pk_inscriptions PRIMARY KEY (id),
+  CONSTRAINT fk_inscription_division FOREIGN KEY (id_division) REFERENCES divisions(id),
+  CONSTRAINT fk_inscription_team FOREIGN KEY (id_team) REFERENCES teams(id)
+);
+
+-- CONTRACTS TABLE
+CREATE TABLE IF NOT EXISTS contracts(
+  id BIGINT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1,
+  id_player BIGINT NOT NULL,
+  id_team BIGINT NOT NULL,
+  init_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  salary FLOAT(15) NOT NULL,
+  type INT(3),
+
+  CONSTRAINT pk_contracts PRIMARY KEY (id),
+  CONSTRAINT fk_contract_player FOREIGN KEY (id_player) REFERENCES players(id),
+  CONSTRAINT fk_contract_team FOREIGN KEY (id_team) REFERENCES teams(id)
+);
