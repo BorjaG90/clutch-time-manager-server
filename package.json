@@ -20,7 +20,10 @@
   "dependencies": {
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.3.3",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5"
   },
   "devDependencies": {
     "morgan": "^1.10.0",
