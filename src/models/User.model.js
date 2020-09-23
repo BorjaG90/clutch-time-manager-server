@@ -43,7 +43,7 @@ const User = db.define('users', {
   timestamps: false
 });
 
-User.hasMany(Team, { foreignKey: 'id_user', sourceKey: 'id'});
-Team.belongsTo(User, { foreignKey: 'id_user', sourceKey: 'id'});
+User.hasMany(Team, { foreignKey: 'user_id', sourceKey: 'id'});
+Team.belongsTo(User, { foreignKey: 'user_id', sourceKey: 'id'});
 
 export default User;

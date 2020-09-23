@@ -12,8 +12,17 @@ const Team = db.define('teams', {
   city: {
     type: Sequelize.DataTypes.TEXT
   },
-  id_user: {
+  user_id: {
     type: Sequelize.DataTypes.BIGINT
+  },
+  active: {
+    type: Sequelize.DataTypes.BOOLEAN
+  },
+  created_at: {
+    type: Sequelize.DataTypes.TIME
+  },
+  modified_at: {
+    type: Sequelize.DataTypes.TIME
   }
 
 }, {
