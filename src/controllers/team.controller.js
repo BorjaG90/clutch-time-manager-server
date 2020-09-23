@@ -3,7 +3,7 @@ import Team from '../models/Team.model';
 export async function getTeams(req, res) {
   try {
     const teams = await Team.findAll({
-      attributes: ['id', "name", "city", "id_user"],
+      attributes: ['id', "name", "city", "user_id"],
       order: [['id','DESC']] 
     });
     res.json({
@@ -19,15 +19,15 @@ export async function getTeams(req, res) {
 
 export async function createTeam(req, res) {
   try {
-    const { city, name, id_user  } = req.body;
+    const { city, name, user_id  } = req.body;
     let newTeam = await Team.create(
       {
         name,
         city,
-        id_user,
+        user_id,
       },
       {
-        fields: ["name", "city", "id_user"],
+        fields: ["name", "city", "user_id"],
       }
     );
     if (newTeam) {
@@ -83,9 +83,9 @@ export async function deleteTeam(req, res) {
 export async function updateTeam(req, res) {
   try {
     const { id } = req.params;
-    const { city, name, id_user  } = req.body;
+    const { city, name, user_id  } = req.body;
     const teams = await Team.findAll({
-      attributes: ['id', "name", "city", "id_user"],
+      attributes: ['id', "name", "city", "user_id"],
       where: { id }
     });
 
@@ -94,7 +94,7 @@ export async function updateTeam(req, res) {
         await team.update({
           name,
           city,
-          id_user
+          user_id
         });
       });
     }
@@ -114,8 +114,8 @@ export async function updateTeam(req, res) {
 export async function getTeamByUser(req, res) {
   try {
     const teams = await Team.findAll({
-      attributes: ['id', "name", "city", "id_user"],
-      where: {id_user: req.params.id},
+      attributes: ['id', "name", "city", "user_id"],
+      where: {user_id: req.params.id},
       order: [['id','DESC']] 
     });
 
