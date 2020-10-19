@@ -4,7 +4,9 @@ import passport from 'passport';
 
 import errorMdw from './middleware/error';
 
+import sportsRoutes from './routes/sport.routes.routes';
 import userRoutes from './routes/user.routes';
+import clubRoutes from './routes/club.routes';
 import teamRoutes from './routes/team.routes';
 import playerRoutes from './routes/player.routes';
 
@@ -20,7 +22,9 @@ app.use(morgan('dev'));
 app.use(json());
 
 // Routes
+app.use('/api/players', sportsRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/clubs', clubRoutes);
 app.use('/api/teams', teamRoutes);
 app.use('/api/players', playerRoutes);
 
