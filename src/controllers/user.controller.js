@@ -120,15 +120,17 @@ export async function getUsers(req, res) {
 
 export async function createUser(req, res) {
   try {
-    const { email, name, password } = req.body;
+    const { email, username, firstname, lastname, password } = req.body;
     let newUser = await User.create(
       {
         email,
         password,
-        name,
+        username,
+        firstname,
+        lastname
       },
       {
-        fields: ["email", "password", "name"],
+        fields: ["email", "password", "username", "firstname", "lastname"],
       }
     );
     if (newUser) {
@@ -184,9 +186,9 @@ export async function deleteUser(req, res) {
 export async function updateUser(req, res) {
   try {
     const { id } = req.params;
-    const { email, name, password } = req.body;
+    const { email, username, firstname, lastname, password } = req.body;
     const users = await User.findAll({
-      attributes: ["id", "email", "name", "password"],
+      attributes: ["id", "email", "username", "firstname", "lastname", "password"],
       where: { id },
     });
 
@@ -195,7 +197,9 @@ export async function updateUser(req, res) {
         await user.update({
           email,
           password,
-          name,
+          username,
+          firstname,
+          lastname
         });
       });
     }
@@ -207,6 +211,36 @@ export async function updateUser(req, res) {
   } catch (error) {
     res.status(500).json({
       message: "Cannot update that user",
+      data: {},
+    });
+  }
+}
+
+export async function updateClub(req, res) {
+  try {
+    const { id } = req.params;
+    const { club_name } = req.body;
+    const users = await User.findAll({
+    attributes: ["id", "club_name"],
+    where: { id },
+  });
+  
+  if (users.length > 0) {
+    users.map(async (user) => {
+      await user.update({
+        club_name,
+      });
+    });
+  }
+
+  return res.json({
+    message: "Club updated succesfully",
+    data: users,
+  });
+    
+  } catch (error) {
+    res.status(500).json({
+      message: "Cannot update that club",
       data: {},
     });
   }
