@@ -23,6 +23,12 @@ const User = db.define('users', {
   lastname: {
     type: Sequelize.DataTypes.TEXT
   },
+  club_name: {
+    type: Sequelize.DataTypes.TEXT
+  },
+  money: {
+    type: Sequelize.DataTypes.FLOAT
+  },
   is_admin: {
     type: Sequelize.DataTypes.BOOLEAN
   },

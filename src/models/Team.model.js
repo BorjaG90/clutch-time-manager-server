@@ -15,6 +15,9 @@ const Team = db.define('teams', {
   user_id: {
     type: Sequelize.DataTypes.BIGINT
   },
+  sport_id: {
+    type: Sequelize.DataTypes.BIGINT
+  },
   active: {
     type: Sequelize.DataTypes.BOOLEAN
   },

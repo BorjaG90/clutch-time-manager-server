@@ -39,6 +39,7 @@ export async function register(req, res, next) {
           username: req.body.username,
           firstname: req.body.firstname || "",
           lastname: req.body.lastname || "",
+          money: 2000000,
           active: true,
           is_admin: false,
           created_at: literal('CURRENT_TIMESTAMP')
@@ -50,6 +51,7 @@ export async function register(req, res, next) {
             "username",
             "firstname",
             "lastname",
+            "money",
             "active",
             "is_admin",
             "created_at"
