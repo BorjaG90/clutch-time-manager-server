@@ -1,3 +1,4 @@
+-- PostgreSQL
 -- DATABASE: clutchtime
 
 DROP TABLE IF EXISTS contracts CASCADE;
